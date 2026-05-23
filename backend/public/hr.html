@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pratyush Sharma — Portfolio for HR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #4F8EF7; --purple: #9B59FF; --cyan: #00E5FF; --pink: #FF3D9A;
+    --bg: #050508; --bg2: #0A0A12; --bg3: #0F0F1A;
+    --glass: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.08);
+    --text: #e8e8f0; --muted: rgba(255,255,255,0.45);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+  .grad { background: linear-gradient(135deg, var(--blue), var(--purple), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .glass { background: var(--glass); border: 1px solid var(--border); backdrop-filter: blur(20px); }
+
+  /* ── Header ── */
+  header { position: relative; padding: 80px 24px 60px; text-align: center; overflow: hidden; }
+  header::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(79,142,247,0.12), transparent); pointer-events:none; }
+  .avatar { width:96px; height:96px; border-radius:50%; background: linear-gradient(135deg,var(--blue),var(--purple)); display:flex; align-items:center; justify-content:center; margin: 0 auto 20px; font-family:'Syne',sans-serif; font-size:2rem; font-weight:800; color:#fff; border:3px solid rgba(79,142,247,0.4); box-shadow:0 0 40px rgba(79,142,247,0.25); }
+  header h1 { font-family:'Syne',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:800; color:#fff; line-height:1.1; margin-bottom:12px; }
+  header p.subtitle { font-size:.95rem; color:var(--muted); max-width:500px; margin:0 auto 28px; line-height:1.7; }
+  .badge-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
+  .badge { padding:6px 14px; border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.05em; background:rgba(79,142,247,0.1); border:1px solid rgba(79,142,247,0.25); color:var(--blue); }
+  .links-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:12px; font-family:'DM Sans',sans-serif; font-size:.9rem; font-weight:500; text-decoration:none; transition:all .25s; cursor:pointer; border:none; }
+  .btn-primary { background:linear-gradient(135deg,var(--blue),var(--purple)); color:#fff; box-shadow:0 0 25px rgba(79,142,247,0.3); }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(79,142,247,0.5); }
+  .btn-outline { background:var(--glass); border:1px solid var(--border); color:var(--text); }
+  .btn-outline:hover { border-color:rgba(79,142,247,0.4); background:rgba(79,142,247,0.06); transform:translateY(-2px); }
+
+  /* ── Resume Banner ── */
+  #resume-banner { max-width:800px; margin:0 auto 48px; padding:0 20px; }
+  .resume-card { border-radius:20px; padding:28px 32px; display:flex; align-items:center; gap:20px; background:linear-gradient(135deg,rgba(79,142,247,0.12),rgba(155,89,255,0.08)); border:1px solid rgba(79,142,247,0.25); }
+  .resume-icon { width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,var(--blue),var(--purple)); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.4rem; }
+  .resume-info h3 { font-family:'Syne',sans-serif; font-weight:700; color:#fff; margin-bottom:4px; }
+  .resume-info p { font-size:.85rem; color:var(--muted); }
+  .resume-actions { margin-left:auto; display:flex; gap:10px; flex-shrink:0; }
+  .no-resume { text-align:center; padding:24px; color:var(--muted); font-size:.9rem; border-radius:16px; background:var(--glass); border:1px solid var(--border); }
+
+  /* ── Section ── */
+  .section { max-width:1100px; margin:0 auto; padding:0 20px 64px; }
+  .section-header { text-align:center; margin-bottom:36px; }
+  .section-label { font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .section-header h2 { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; color:#fff; }
+
+  /* ── Project Grid ── */
+  .project-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:20px; }
+  .project-card { background:var(--glass); border:1px solid var(--border); border-radius:20px; overflow:hidden; transition:all .3s; display:flex; flex-direction:column; }
+  .project-card:hover { transform:translateY(-6px); border-color:rgba(79,142,247,0.25); box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+  .project-top { padding:28px 24px 20px; flex:1; }
+  .project-cat { display:inline-block; font-family:'JetBrains Mono',monospace; font-size:.65rem; padding:4px 10px; border-radius:6px; margin-bottom:12px; background:rgba(79,142,247,0.12); color:var(--blue); border:1px solid rgba(79,142,247,0.2); }
+  .project-cat.featured { background:rgba(155,89,255,0.12); color:var(--purple); border-color:rgba(155,89,255,0.2); }
+  .project-card h3 { font-family:'Syne',sans-serif; font-weight:700; font-size:1.1rem; color:#fff; margin-bottom:10px; }
+  .project-card p { font-size:.88rem; color:var(--muted); line-height:1.7; margin-bottom:14px; }
+  .tech-list { display:flex; flex-wrap:wrap; gap:6px; }
+  .tech-tag { font-family:'JetBrains Mono',monospace; font-size:.65rem; padding:3px 8px; border-radius:6px; background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.08); }
+  .project-links { border-top:1px solid var(--border); padding:16px 24px; display:flex; gap:10px; }
+  .proj-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:10px; border-radius:10px; font-size:.82rem; text-decoration:none; transition:all .2s; border:1px solid var(--border); color:var(--muted); background:rgba(255,255,255,0.03); }
+  .proj-btn:hover { color:#fff; border-color:rgba(79,142,247,0.4); background:rgba(79,142,247,0.08); }
+  .proj-btn.live { background:linear-gradient(135deg,rgba(79,142,247,0.2),rgba(155,89,255,0.2)); border-color:rgba(79,142,247,0.3); color:#fff; }
+  .proj-btn.live:hover { box-shadow:0 0 20px rgba(79,142,247,0.3); }
+  .no-link { opacity:.35; pointer-events:none; }
+
+  /* ── Contact strip ── */
+  .contact-strip { background:var(--bg2); border-top:1px solid var(--border); padding:48px 20px; text-align:center; }
+  .contact-strip h3 { font-family:'Syne',sans-serif; font-size:1.6rem; font-weight:700; color:#fff; margin-bottom:8px; }
+  .contact-strip p { color:var(--muted); margin-bottom:24px; font-size:.9rem; }
+  .social-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .social-btn { display:flex; align-items:center; gap:8px; padding:10px 20px; border-radius:10px; text-decoration:none; font-size:.85rem; background:var(--glass); border:1px solid var(--border); color:var(--muted); transition:all .2s; }
+  .social-btn:hover { color:#fff; border-color:rgba(79,142,247,0.4); }
+
+  .spinner { width:36px; height:36px; border:3px solid rgba(79,142,247,0.2); border-top-color:var(--blue); border-radius:50%; animation:spin .8s linear infinite; margin:60px auto; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  .empty { text-align:center; padding:60px 20px; color:var(--muted); }
+  .empty .icon { font-size:3rem; margin-bottom:12px; }
+
+  footer { text-align:center; padding:24px; font-size:.8rem; color:rgba(255,255,255,0.2); border-top:1px solid var(--border); }
+
+  @media(max-width:600px) {
+    .resume-card { flex-direction:column; text-align:center; }
+    .resume-actions { margin-left:0; }
+    .project-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="avatar" id="avatar">PS</div>
+  <h1><span id="prof-name">Pratyush Sharma</span></h1>
+  <p class="subtitle" id="prof-title">Computer Science Student | Frontend Developer | AI & ML Enthusiast</p>
+  <div class="badge-row">
+    <span class="badge">🎓 CS Student</span>
+    <span class="badge">⚛️ React Dev</span>
+    <span class="badge">🤖 AI/ML</span>
+    <span class="badge">🟢 Open to Opportunities</span>
+  </div>
+  <div class="links-row">
+    <a id="btn-resume" class="btn btn-primary" href="/api/resume/download" target="_blank">
+      📄 Download Resume
+    </a>
+    <a id="btn-github" class="btn btn-outline" href="#" target="_blank">
+      🐙 GitHub Profile
+    </a>
+    <a id="btn-linkedin" class="btn btn-outline" href="#" target="_blank">
+      💼 LinkedIn
+    </a>
+    <a id="btn-email" class="btn btn-outline" href="#">
+      ✉️ Send Email
+    </a>
+  </div>
+</header>
+
+<!-- Resume Banner -->
+<div id="resume-banner">
+  <div class="spinner" id="resume-spinner"></div>
+  <div id="resume-content" style="display:none"></div>
+</div>
+
+<!-- Projects -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-label">Portfolio Projects</div>
+    <h2>All Projects by <span class="grad">Pratyush Sharma</span></h2>
+  </div>
+  <div class="spinner" id="projects-spinner"></div>
+  <div class="project-grid" id="project-grid" style="display:none"></div>
+  <div class="empty" id="projects-empty" style="display:none">
+    <div class="icon">📂</div>
+    <p>No projects added yet.</p>
+  </div>
+</div>
+
+<!-- Contact -->
+<div class="contact-strip">
+  <h3>Interested? Let's Connect</h3>
+  <p id="contact-sub">Reach out to discuss opportunities or learn more about my work.</p>
+  <div class="social-row" id="social-row"></div>
+</div>
+
+<footer>
+  © 2024 Pratyush Sharma &nbsp;·&nbsp; This page is shared with you for recruitment purposes.
+</footer>
+
+<script>
+const API = window.location.origin
+
+async function loadProfile() {
+  try {
+    const r = await fetch(`${API}/api/profile`)
+    const p = await r.json()
+    document.getElementById('prof-name').textContent = p.name || 'Pratyush Sharma'
+    document.getElementById('prof-title').textContent = p.title || ''
+    document.getElementById('avatar').textContent = (p.name || 'PS').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2)
+    if (p.github) document.getElementById('btn-github').href = p.github
+    if (p.linkedin) document.getElementById('btn-linkedin').href = p.linkedin
+    if (p.email) document.getElementById('btn-email').href = `mailto:${p.email}`
+    document.getElementById('contact-sub').textContent = `Reach out to ${p.name || 'Pratyush'} at ${p.email || 'pratyush@example.com'}`
+    const socials = [
+      p.email && { href:`mailto:${p.email}`, icon:'✉️', label:p.email },
+      p.github && { href:p.github, icon:'🐙', label:'GitHub' },
+      p.linkedin && { href:p.linkedin, icon:'💼', label:'LinkedIn' },
+    ].filter(Boolean)
+    document.getElementById('social-row').innerHTML = socials.map(s =>
+      `<a href="${s.href}" target="_blank" class="social-btn">${s.icon} ${s.label}</a>`
+    ).join('')
+  } catch {}
+}
+
+async function loadResume() {
+  const spinner = document.getElementById('resume-spinner')
+  const content = document.getElementById('resume-content')
+  try {
+    const r = await fetch(`${API}/api/resume`)
+    const resume = await r.json()
+    spinner.style.display = 'none'
+    content.style.display = 'block'
+    if (!resume.url && !resume.filename) {
+      content.innerHTML = `<div class="no-resume">📄 Resume not uploaded yet — check back soon.</div>`
+      document.getElementById('btn-resume').style.opacity = '0.4'
+      document.getElementById('btn-resume').style.pointerEvents = 'none'
+      return
+    }
+    const date = resume.uploadedAt ? new Date(resume.uploadedAt).toLocaleDateString('en-IN', { year:'numeric', month:'short', day:'numeric' }) : 'Recently'
+    const size = resume.size ? `${(resume.size/1024).toFixed(0)} KB` : ''
+    content.innerHTML = `
+      <div class="resume-card">
+        <div class="resume-icon">📄</div>
+        <div class="resume-info">
+          <h3>Pratyush Sharma — Resume</h3>
+          <p>Last updated: ${date} ${size ? '· ' + size : ''}</p>
+        </div>
+        <div class="resume-actions">
+          <a href="/api/resume/download" target="_blank" class="btn btn-primary">⬇️ Download PDF</a>
+          ${resume.type === 'link' && resume.url ? `<a href="${resume.url}" target="_blank" class="btn btn-outline">🔗 View Online</a>` : ''}
+        </div>
+      </div>`
+  } catch {
+    spinner.style.display = 'none'
+    content.style.display = 'block'
+    content.innerHTML = `<div class="no-resume">Could not load resume info.</div>`
+  }
+}
+
+async function loadProjects() {
+  const spinner = document.getElementById('projects-spinner')
+  const grid = document.getElementById('project-grid')
+  const empty = document.getElementById('projects-empty')
+  try {
+    const r = await fetch(`${API}/api/projects`)
+    const projects = await r.json()
+    spinner.style.display = 'none'
+    if (!projects.length) { empty.style.display = 'block'; return }
+    grid.style.display = 'grid'
+    grid.innerHTML = projects.map(p => `
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-cat ${p.featured ? 'featured' : ''}">${p.featured ? '★ Featured · ' : ''}${p.category || 'Project'}</span>
+          <h3>${p.title}</h3>
+          <p>${p.description}</p>
+          <div class="tech-list">
+            ${(p.tech || []).map(t => `<span class="tech-tag">${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="${p.githubUrl || '#'}" target="${p.githubUrl ? '_blank' : '_self'}"
+            class="proj-btn ${!p.githubUrl ? 'no-link' : ''}">
+            🐙 GitHub
+          </a>
+          <a href="${p.liveUrl || '#'}" target="${p.liveUrl ? '_blank' : '_self'}"
+            class="proj-btn live ${!p.liveUrl ? 'no-link' : ''}">
+            🚀 Live Demo
+          </a>
+        </div>
+      </div>
+    `).join('')
+  } catch {
+    spinner.style.display = 'none'
+    empty.style.display = 'block'
+  }
+}
+
+// Log HR visit
+fetch(`${API}/api/profile/log-hr-view`, { method:'POST' }).catch(()=>{})
+
+// Load everything
+loadProfile()
+loadResume()
+loadProjects()
+</script>
+</body>
+</html>
